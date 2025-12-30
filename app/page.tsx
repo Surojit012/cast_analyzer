@@ -77,18 +77,23 @@ export default function Home() {
   }
 
   const handleTip = async () => {
-    console.log('Tip button clicked', { privyAvailable, authenticated, login })
+    console.log('Tip button clicked', { privyAvailable, authenticated, login, ready })
     
     if (privyAvailable && !authenticated && login) {
       try {
-        await login()
+        console.log('Attempting to login...')
+        const result = await login()
+        console.log('Login result:', result)
       } catch (error) {
         console.error('Login failed:', error)
-        alert('Login failed. Please check console for details.')
+        // Show a user-friendly error
+        setError('Login failed. Please try refreshing the page.')
+        setTimeout(() => setError(''), 3000)
       }
       return
     }
     
+    console.log('Showing tip confirmation')
     setShowTip(true)
     setTimeout(() => setShowTip(false), 3000)
   }

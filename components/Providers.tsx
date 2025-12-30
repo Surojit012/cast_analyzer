@@ -24,6 +24,9 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             embeddedWallets: {
               createOnLogin: 'users-without-wallets',
             },
+            // Add these for better compatibility
+            supportedChains: [],
+            defaultChain: undefined,
           }}
         >
           {children}
