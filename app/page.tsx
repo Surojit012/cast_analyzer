@@ -1,11 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-// Temporarily disable Privy imports
-// import { usePrivy } from '@privy-io/react-auth'
-// import PrivyTest from '@/components/PrivyTest'
-// import SimplePrivyTest from '@/components/SimplePrivyTest'
-// import PrivyDebug from '@/components/PrivyDebug'
+import { usePrivy } from '@privy-io/react-auth'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -23,14 +19,11 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showTip, setShowTip] = useState(false)
-  const [showDebug, setShowDebug] = useState(false)
 
-  // Temporarily disable Privy hooks
-  // const { login, logout, authenticated, user, ready } = usePrivy()
-  const authenticated = false
-  const ready = true
+  // Re-enable Privy hooks
+  const { login, logout, authenticated, user, ready } = usePrivy()
 
-  console.log('Auth state:', { authenticated, ready })
+  console.log('Auth state:', { authenticated, ready, user })
 
   const analyzeCast = async () => {
     if (!castText.trim()) {
@@ -219,15 +212,26 @@ export default function Home() {
         {/* Tip Section */}
         <div className="border-t border-gray-800 pt-6 mb-8">
           <div className="text-center space-y-3">
-            <div className="p-4 bg-yellow-900/20 border border-yellow-800 rounded-lg">
-              <p className="text-yellow-400 text-sm mb-2">
-                🚧 Authentication temporarily disabled
-              </p>
-              <p className="text-gray-400 text-xs">
-                Tipping feature will be available once authentication is resolved.
-                The core cast analysis works perfectly!
-              </p>
-            </div>
+            <button
+              onClick={handleTip}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors text-sm font-medium"
+            >
+              ☕ {authenticated ? 'Tip Creator' : 'Login to Tip'}
+            </button>
+            
+            {authenticated && (
+              <div className="space-y-2">
+                <p className="text-xs text-gray-500">
+                  Connected as {getUserDisplayName()}
+                </p>
+                <button
+                  onClick={logout}
+                  className="text-xs text-gray-400 hover:text-gray-300 underline"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
             
             {showTip && (
               <div className="p-3 bg-green-900/20 border border-green-800 rounded-md text-green-400 text-sm">

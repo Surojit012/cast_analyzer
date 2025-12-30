@@ -1,13 +1,5 @@
 'use client'
 
-// Temporarily disable Privy to focus on core functionality
-export default function Providers({ children }: { children: React.ReactNode }) {
-  console.log('Running without Privy authentication (temporarily disabled)')
-  return <>{children}</>
-}
-
-// Original Privy implementation (commented out for now)
-/*
 import { PrivyProvider } from '@privy-io/react-auth'
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -23,14 +15,16 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <PrivyProvider
         appId={privyAppId}
         config={{
-          // Start with just email to test
-          loginMethods: ['email'],
+          loginMethods: ['farcaster', 'email'],
           appearance: {
             theme: 'dark',
+            accentColor: '#8B5CF6',
           },
           embeddedWallets: {
-            createOnLogin: 'off',
+            createOnLogin: 'users-without-wallets',
           },
+          // Disable analytics to avoid CORS issues
+          clientAnalyticsEnabled: false,
         }}
         onSuccess={(user) => {
           console.log('✅ Privy login successful:', user)
@@ -49,4 +43,3 @@ export default function Providers({ children }: { children: React.ReactNode }) {
   // Fallback without Privy
   return <>{children}</>
 }
-*/
