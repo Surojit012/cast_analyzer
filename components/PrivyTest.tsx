@@ -7,6 +7,7 @@ export default function PrivyTest() {
   const { ready, authenticated, user, login, logout } = usePrivy()
   const [loginAttempting, setLoginAttempting] = useState(false)
   const [loginError, setLoginError] = useState('')
+  const [detailedError, setDetailedError] = useState('')
 
   useEffect(() => {
     console.log('Privy Test Component - State:', {
@@ -23,14 +24,28 @@ export default function PrivyTest() {
   const handleTestLogin = async () => {
     setLoginAttempting(true)
     setLoginError('')
+    setDetailedError('')
     
     try {
       console.log('🔄 Starting test login...')
+      console.log('Current URL:', window.location.href)
+      console.log('User agent:', navigator.userAgent)
+      
       const result = await login()
       console.log('✅ Test login successful:', result)
     } catch (error) {
       console.error('❌ Test login failed:', error)
+      console.error('Error stack:', error.stack)
+      console.error('Error name:', error.name)
+      console.error('Error message:', error.message)
+      
       setLoginError(error.message || 'Login failed')
+      setDetailedError(JSON.stringify({
+        name: error.name,
+        message: error.message,
+        stack: error.stack?.split('\n').slice(0, 3).join('\n'),
+        cause: error.cause,
+      }, null, 2))
     } finally {
       setLoginAttempting(false)
     }
@@ -64,7 +79,14 @@ export default function PrivyTest() {
           </div>
         )}
         {loginError && (
-          <p className="text-red-400 text-xs mt-2">Error: {loginError}</p>
+          <div className="mt-2 p-2 bg-red-900/20 border border-red-800 rounded">
+            <p className="text-red-400 text-xs">Error: {loginError}</p>
+            {detailedError && (
+              <pre className="text-xs text-red-300 mt-1 overflow-auto max-h-32">
+                {detailedError}
+              </pre>
+            )}
+          </div>
         )}
         <div className="mt-3 space-x-2">
           {!authenticated ? (
@@ -73,7 +95,7 @@ export default function PrivyTest() {
               disabled={loginAttempting}
               className="px-3 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700 disabled:opacity-50"
             >
-              {loginAttempting ? '🔄 Testing...' : 'Test Login'}
+              {loginAttempting ? '🔄 Testing...' : 'Test Email Login'}
             </button>
           ) : (
             <button

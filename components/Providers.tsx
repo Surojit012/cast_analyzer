@@ -15,28 +15,21 @@ export default function Providers({ children }: { children: React.ReactNode }) {
       <PrivyProvider
         appId={privyAppId}
         config={{
-          loginMethods: ['farcaster', 'email'],
+          // Start with just email to test
+          loginMethods: ['email'],
           appearance: {
             theme: 'dark',
-            accentColor: '#8B5CF6',
           },
           embeddedWallets: {
-            createOnLogin: 'users-without-wallets',
+            createOnLogin: 'off',
           },
-          // Disable analytics to avoid CORS issues
-          clientAnalyticsEnabled: false,
-          // Add explicit legal config
-          legal: {
-            termsAndConditionsUrl: undefined,
-            privacyPolicyUrl: undefined,
-          },
-          // Remove supportedChains to use default
         }}
         onSuccess={(user) => {
           console.log('✅ Privy login successful:', user)
         }}
         onError={(error) => {
           console.error('❌ Privy login error:', error)
+          console.error('Error details:', JSON.stringify(error, null, 2))
         }}
       >
         {children}
