@@ -20,15 +20,29 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             appearance: {
               theme: 'dark',
               accentColor: '#8B5CF6',
+              logo: undefined,
             },
             embeddedWallets: {
               createOnLogin: 'users-without-wallets',
+              requireUserPasswordOnCreate: false,
             },
-            // Add explicit domain configuration
+            // Explicit domain and environment configuration
             legal: {
               termsAndConditionsUrl: undefined,
               privacyPolicyUrl: undefined,
             },
+            // Add explicit client configuration
+            clientAnalyticsEnabled: true,
+            // Ensure proper iframe handling
+            mfa: {
+              noPromptOnMfaRequired: false,
+            },
+          }}
+          onSuccess={(user) => {
+            console.log('Privy login successful:', user)
+          }}
+          onError={(error) => {
+            console.error('Privy error:', error)
           }}
         >
           {children}
