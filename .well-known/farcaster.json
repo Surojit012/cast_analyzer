@@ -1,0 +1,6 @@
+{
+  "name": "Cast Analyzer",
+  "description": "Analyze and improve your Farcaster casts",
+  "icon": "/icon.png",
+  "url": "https://cast-analyzer.vercel.app"
+}
