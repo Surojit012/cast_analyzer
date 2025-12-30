@@ -34,23 +34,24 @@ const nextConfig = {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
           },
-          // Temporarily remove CSP to test
-          // {
-          //   key: 'Content-Security-Policy',
-          //   value: [
-          //     "default-src 'self' https:",
-          //     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:",
-          //     "style-src 'self' 'unsafe-inline' https:",
-          //     "img-src 'self' data: https: blob:",
-          //     "font-src 'self' data: https:",
-          //     "connect-src 'self' https: wss: data:",
-          //     "frame-src 'self' https:",
-          //     "worker-src 'self' blob: data:",
-          //     "child-src 'self' blob: data:",
-          //     "object-src 'none'",
-          //     "base-uri 'self'",
-          //   ].join('; '),
-          // },
+          // Add back a more permissive CSP for Privy
+          {
+            key: 'Content-Security-Policy',
+            value: [
+              "default-src 'self' https: data:",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:",
+              "style-src 'self' 'unsafe-inline' https: data:",
+              "img-src 'self' data: https: blob:",
+              "font-src 'self' data: https: blob:",
+              "connect-src 'self' https: wss: data: blob:",
+              "frame-src 'self' https: data:",
+              "worker-src 'self' blob: data: https:",
+              "child-src 'self' blob: data: https:",
+              "object-src 'none'",
+              "base-uri 'self'",
+              "form-action 'self' https:",
+            ].join('; '),
+          },
         ],
       },
     ]
