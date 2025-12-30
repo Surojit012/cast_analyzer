@@ -30,8 +30,7 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             termsAndConditionsUrl: undefined,
             privacyPolicyUrl: undefined,
           },
-          // Add supportedChains to avoid potential issues
-          supportedChains: [],
+          // Remove supportedChains to use default
         }}
         onSuccess={(user) => {
           console.log('✅ Privy login successful:', user)
