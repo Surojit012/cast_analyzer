@@ -34,20 +34,23 @@ const nextConfig = {
             key: 'Access-Control-Allow-Headers',
             value: 'Content-Type, Authorization',
           },
-          {
-            key: 'Content-Security-Policy',
-            value: [
-              "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org",
-              "style-src 'self' 'unsafe-inline'",
-              "img-src 'self' data: https: blob:",
-              "font-src 'self' data:",
-              "connect-src 'self' https://auth.privy.io https://verify.walletconnect.com https://verify.walletconnect.org https://openrouter.ai wss://relay.walletconnect.com wss://relay.walletconnect.org",
-              "frame-src 'self' https://auth.privy.io https://verify.walletconnect.com",
-              "worker-src 'self' blob:",
-              "child-src 'self' blob:",
-            ].join('; '),
-          },
+          // Temporarily remove CSP to test
+          // {
+          //   key: 'Content-Security-Policy',
+          //   value: [
+          //     "default-src 'self' https:",
+          //     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:",
+          //     "style-src 'self' 'unsafe-inline' https:",
+          //     "img-src 'self' data: https: blob:",
+          //     "font-src 'self' data: https:",
+          //     "connect-src 'self' https: wss: data:",
+          //     "frame-src 'self' https:",
+          //     "worker-src 'self' blob: data:",
+          //     "child-src 'self' blob: data:",
+          //     "object-src 'none'",
+          //     "base-uri 'self'",
+          //   ].join('; '),
+          // },
         ],
       },
     ]
