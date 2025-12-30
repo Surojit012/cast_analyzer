@@ -23,6 +23,19 @@ export default function Providers({ children }: { children: React.ReactNode }) {
           embeddedWallets: {
             createOnLogin: 'users-without-wallets',
           },
+          // Add explicit configuration for production
+          legal: {
+            termsAndConditionsUrl: undefined,
+            privacyPolicyUrl: undefined,
+          },
+          // Disable analytics that might be causing CORS issues
+          clientAnalyticsEnabled: false,
+        }}
+        onSuccess={(user) => {
+          console.log('✅ Privy login successful:', user)
+        }}
+        onError={(error) => {
+          console.error('❌ Privy login error:', error)
         }}
       >
         {children}

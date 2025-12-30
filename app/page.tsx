@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { usePrivy } from '@privy-io/react-auth'
 import PrivyTest from '@/components/PrivyTest'
+import PrivyDebug from '@/components/PrivyDebug'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -119,8 +120,9 @@ export default function Home() {
 
         {/* Debug Section */}
         {showDebug && (
-          <div className="mb-6">
+          <div className="mb-6 space-y-4">
             <PrivyTest />
+            <PrivyDebug />
           </div>
         )}
 
