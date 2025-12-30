@@ -27,9 +27,11 @@ export default function Home() {
     const { usePrivy } = require('@privy-io/react-auth')
     privyHooks = usePrivy()
     privyAvailable = true
+    console.log('Privy hooks loaded successfully')
   } catch (error) {
     // Privy not available, continue without auth
     privyAvailable = false
+    console.log('Privy hooks not available:', error)
   }
 
   const { login, logout, authenticated, user, ready } = privyHooks || {
@@ -39,6 +41,8 @@ export default function Home() {
     user: null,
     ready: true
   }
+
+  console.log('Auth state:', { privyAvailable, authenticated, ready, user })
 
   const analyzeCast = async () => {
     if (!castText.trim()) {
@@ -73,8 +77,15 @@ export default function Home() {
   }
 
   const handleTip = async () => {
+    console.log('Tip button clicked', { privyAvailable, authenticated, login })
+    
     if (privyAvailable && !authenticated && login) {
-      await login()
+      try {
+        await login()
+      } catch (error) {
+        console.error('Login failed:', error)
+        alert('Login failed. Please check console for details.')
+      }
       return
     }
     
