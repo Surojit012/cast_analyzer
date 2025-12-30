@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePrivy } from '@privy-io/react-auth'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -19,30 +20,10 @@ export default function Home() {
   const [error, setError] = useState('')
   const [showTip, setShowTip] = useState(false)
 
-  // Try to use Privy hooks if available
-  let privyHooks: any = null
-  let privyAvailable = false
+  // Use Privy hooks directly
+  const { login, logout, authenticated, user, ready } = usePrivy()
 
-  try {
-    const { usePrivy } = require('@privy-io/react-auth')
-    privyHooks = usePrivy()
-    privyAvailable = true
-    console.log('Privy hooks loaded successfully')
-  } catch (error) {
-    // Privy not available, continue without auth
-    privyAvailable = false
-    console.log('Privy hooks not available:', error)
-  }
-
-  const { login, logout, authenticated, user, ready } = privyHooks || {
-    login: null,
-    logout: null,
-    authenticated: false,
-    user: null,
-    ready: true
-  }
-
-  console.log('Auth state:', { privyAvailable, authenticated, ready, user })
+  console.log('Auth state:', { authenticated, ready, user })
 
   const analyzeCast = async () => {
     if (!castText.trim()) {
@@ -77,9 +58,9 @@ export default function Home() {
   }
 
   const handleTip = async () => {
-    console.log('Tip button clicked', { privyAvailable, authenticated, login, ready })
+    console.log('Tip button clicked', { authenticated, login, ready })
     
-    if (privyAvailable && !authenticated && login) {
+    if (!authenticated && login) {
       try {
         console.log('Attempting to login...')
         const result = await login()
@@ -216,10 +197,10 @@ export default function Home() {
               onClick={handleTip}
               className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors text-sm font-medium"
             >
-              ☕ {privyAvailable && !authenticated ? 'Login to Tip' : 'Tip Creator'}
+              ☕ {authenticated ? 'Tip Creator' : 'Login to Tip'}
             </button>
             
-            {privyAvailable && authenticated && (
+            {authenticated && (
               <div className="space-y-2">
                 <p className="text-xs text-gray-500">
                   Connected as {getUserDisplayName()}
@@ -238,7 +219,7 @@ export default function Home() {
                 Thanks for the support! 🙏
                 <br />
                 <span className="text-xs text-green-500">
-                  {privyAvailable ? 'Wallet integration coming soon' : 'Get a valid Privy App ID for full authentication'}
+                  Wallet integration coming soon
                 </span>
               </div>
             )}
