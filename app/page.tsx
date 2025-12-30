@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { usePrivy } from '@privy-io/react-auth'
 import PrivyTest from '@/components/PrivyTest'
+import SimplePrivyTest from '@/components/SimplePrivyTest'
 import PrivyDebug from '@/components/PrivyDebug'
 
 interface CastAnalysis {
@@ -140,6 +141,7 @@ export default function Home() {
         {/* Debug Section */}
         {showDebug && (
           <div className="mb-6 space-y-4">
+            <SimplePrivyTest />
             <PrivyTest />
           </div>
         )}
