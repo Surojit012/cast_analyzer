@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { usePrivy } from '@privy-io/react-auth'
+import PrivyTest from '@/components/PrivyTest'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -19,6 +20,7 @@ export default function Home() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
   const [showTip, setShowTip] = useState(false)
+  const [showDebug, setShowDebug] = useState(false)
 
   // Use Privy hooks directly
   const { login, logout, authenticated, user, ready } = usePrivy()
@@ -107,7 +109,20 @@ export default function Home() {
           <p className="text-gray-400 text-sm">
             Analyze and improve your Farcaster casts
           </p>
+          <button
+            onClick={() => setShowDebug(!showDebug)}
+            className="mt-2 text-xs text-gray-500 hover:text-gray-400 underline"
+          >
+            {showDebug ? 'Hide' : 'Show'} Debug Info
+          </button>
         </div>
+
+        {/* Debug Section */}
+        {showDebug && (
+          <div className="mb-6">
+            <PrivyTest />
+          </div>
+        )}
 
         {/* Input Section */}
         <div className="bg-gray-900 rounded-lg p-4 border border-gray-800 mb-6">
