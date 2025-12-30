@@ -21,10 +21,25 @@ export default function Providers({ children }: { children: React.ReactNode }) {
             accentColor: '#8B5CF6',
           },
           embeddedWallets: {
-            createOnLogin: 'users-without-wallets',
+            createOnLogin: 'off', // Completely disable wallets
           },
-          // Disable analytics to avoid CORS issues
+          // Completely disable all analytics and telemetry
           clientAnalyticsEnabled: false,
+          // Add explicit legal config to avoid any additional requests
+          legal: {
+            termsAndConditionsUrl: undefined,
+            privacyPolicyUrl: undefined,
+          },
+          // Disable MFA to avoid additional complexity
+          mfa: {
+            noPromptOnMfaRequired: true,
+          },
+          // Add explicit domain configuration
+          ...(typeof window !== 'undefined' && {
+            customAuth: {
+              enabled: false,
+            },
+          }),
         }}
         onSuccess={(user) => {
           console.log('✅ Privy login successful:', user)

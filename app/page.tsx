@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { usePrivy } from '@privy-io/react-auth'
+import MinimalPrivyTest from '@/components/MinimalPrivyTest'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -126,6 +127,11 @@ export default function Home() {
           <p className="text-gray-400 text-sm">
             Analyze and improve your Farcaster casts
           </p>
+        </div>
+
+        {/* Minimal Privy Test */}
+        <div className="mb-6">
+          <MinimalPrivyTest />
         </div>
 
         {/* Input Section */}
