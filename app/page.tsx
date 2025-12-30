@@ -66,20 +66,39 @@ export default function Home() {
     if (!authenticated && login) {
       try {
         console.log('Attempting to login...')
+        setError('') // Clear any previous errors
+        
+        // Add a small delay to ensure Privy is fully ready
+        await new Promise(resolve => setTimeout(resolve, 100))
+        
         const result = await login()
         console.log('Login result:', result)
+        
+        // If login was successful, show tip confirmation
+        if (result) {
+          setShowTip(true)
+          setTimeout(() => setShowTip(false), 3000)
+        }
       } catch (error) {
         console.error('Login failed:', error)
-        // Show a user-friendly error
-        setError('Login failed. Please try refreshing the page.')
-        setTimeout(() => setError(''), 3000)
+        // Show a more specific error message
+        if (error.message?.includes('User rejected')) {
+          setError('Login was cancelled. Please try again if you want to tip.')
+        } else if (error.message?.includes('network')) {
+          setError('Network error. Please check your connection and try again.')
+        } else {
+          setError('Login failed. Please try refreshing the page and try again.')
+        }
+        setTimeout(() => setError(''), 5000)
       }
       return
     }
     
-    console.log('Showing tip confirmation')
-    setShowTip(true)
-    setTimeout(() => setShowTip(false), 3000)
+    if (authenticated) {
+      console.log('User already authenticated, showing tip confirmation')
+      setShowTip(true)
+      setTimeout(() => setShowTip(false), 3000)
+    }
   }
 
   const getEngagementColor = (level: string) => {
@@ -122,7 +141,6 @@ export default function Home() {
         {showDebug && (
           <div className="mb-6 space-y-4">
             <PrivyTest />
-            <PrivyDebug />
           </div>
         )}
 

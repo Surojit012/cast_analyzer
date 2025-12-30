@@ -1,10 +1,12 @@
 'use client'
 
 import { usePrivy } from '@privy-io/react-auth'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
 export default function PrivyTest() {
   const { ready, authenticated, user, login, logout } = usePrivy()
+  const [loginAttempting, setLoginAttempting] = useState(false)
+  const [loginError, setLoginError] = useState('')
 
   useEffect(() => {
     console.log('Privy Test Component - State:', {
@@ -17,6 +19,22 @@ export default function PrivyTest() {
       } : null,
     })
   }, [ready, authenticated, user])
+
+  const handleTestLogin = async () => {
+    setLoginAttempting(true)
+    setLoginError('')
+    
+    try {
+      console.log('🔄 Starting test login...')
+      const result = await login()
+      console.log('✅ Test login successful:', result)
+    } catch (error) {
+      console.error('❌ Test login failed:', error)
+      setLoginError(error.message || 'Login failed')
+    } finally {
+      setLoginAttempting(false)
+    }
+  }
 
   if (!ready) {
     return (
@@ -45,13 +63,17 @@ export default function PrivyTest() {
             {user.farcaster && <p>Farcaster: {user.farcaster.displayName}</p>}
           </div>
         )}
+        {loginError && (
+          <p className="text-red-400 text-xs mt-2">Error: {loginError}</p>
+        )}
         <div className="mt-3 space-x-2">
           {!authenticated ? (
             <button
-              onClick={login}
-              className="px-3 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700"
+              onClick={handleTestLogin}
+              disabled={loginAttempting}
+              className="px-3 py-1 bg-purple-600 text-white rounded text-xs hover:bg-purple-700 disabled:opacity-50"
             >
-              Test Login
+              {loginAttempting ? '🔄 Testing...' : 'Test Login'}
             </button>
           ) : (
             <button
