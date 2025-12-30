@@ -196,29 +196,25 @@ export default function Home() {
         {/* Tip Section */}
         <div className="border-t border-gray-800 pt-6 mb-8">
           <div className="text-center space-y-3">
-            {ready && (
-              <>
+            <button
+              onClick={handleTip}
+              className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors text-sm font-medium"
+            >
+              ☕ {privyAvailable && !authenticated ? 'Login to Tip' : 'Tip Creator'}
+            </button>
+            
+            {privyAvailable && authenticated && (
+              <div className="space-y-2">
+                <p className="text-xs text-gray-500">
+                  Connected as {getUserDisplayName()}
+                </p>
                 <button
-                  onClick={handleTip}
-                  className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors text-sm font-medium"
+                  onClick={logout}
+                  className="text-xs text-gray-400 hover:text-gray-300 underline"
                 >
-                  ☕ {privyAvailable && !authenticated ? 'Login to Tip' : 'Tip Creator'}
+                  Logout
                 </button>
-                
-                {privyAvailable && authenticated && (
-                  <div className="space-y-2">
-                    <p className="text-xs text-gray-500">
-                      Connected as {getUserDisplayName()}
-                    </p>
-                    <button
-                      onClick={logout}
-                      className="text-xs text-gray-400 hover:text-gray-300 underline"
-                    >
-                      Logout
-                    </button>
-                  </div>
-                )}
-              </>
+              </div>
             )}
             
             {showTip && (
