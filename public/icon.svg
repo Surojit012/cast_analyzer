@@ -1,0 +1,20 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="64" fill="#000000"/>
+  
+  <!-- Main Icon - Analytics Chart -->
+  <rect x="128" y="320" width="48" height="128" rx="8" fill="#8B5CF6"/>
+  <rect x="192" y="256" width="48" height="192" rx="8" fill="#A855F7"/>
+  <rect x="256" y="192" width="48" height="256" rx="8" fill="#C084FC"/>
+  <rect x="320" y="128" width="48" height="320" rx="8" fill="#DDD6FE"/>
+  
+  <!-- Cast Symbol -->
+  <circle cx="256" cy="96" r="24" fill="#8B5CF6"/>
+  <path d="M232 96 L280 96 M256 72 L256 120" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+  
+  <!-- Sparkle Effects -->
+  <circle cx="384" cy="160" r="4" fill="#F59E0B"/>
+  <circle cx="416" cy="192" r="3" fill="#EF4444"/>
+  <circle cx="96" cy="240" r="3" fill="#10B981"/>
+  <circle cx="448" cy="320" r="4" fill="#3B82F6"/>
+</svg>

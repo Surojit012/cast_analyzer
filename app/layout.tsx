@@ -6,29 +6,34 @@ import Providers from '@/components/Providers'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Cast Analyzer',
-  description: 'Analyze and improve your Farcaster casts',
+  title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
+  description: 'Analyze and improve your Farcaster casts with AI-powered engagement predictions, optimal timing suggestions, and rewrite recommendations.',
+  keywords: ['Farcaster', 'Cast', 'Analytics', 'AI', 'Social Media', 'Engagement', 'Optimization'],
+  authors: [{ name: 'Cast Analyzer Team' }],
   openGraph: {
-    title: 'Cast Analyzer',
-    description: 'Analyze and improve your Farcaster casts',
+    title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
+    description: 'Analyze and improve your Farcaster casts with AI-powered engagement predictions, optimal timing suggestions, and rewrite recommendations.',
     type: 'website',
+    url: 'https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app',
+    images: [
+      {
+        url: 'https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg',
+        width: 512,
+        height: 512,
+        alt: 'Cast Analyzer Logo',
+      },
+    ],
   },
-  // Temporarily remove CSP from metadata to test
-  // other: {
-  //   'Content-Security-Policy': [
-  //     "default-src 'self' https:",
-  //     "script-src 'self' 'unsafe-inline' 'unsafe-eval' https: data:",
-  //     "style-src 'self' 'unsafe-inline' https:",
-  //     "img-src 'self' data: https: blob:",
-  //     "font-src 'self' data: https:",
-  //     "connect-src 'self' https: wss: data:",
-  //     "frame-src 'self' https:",
-  //     "worker-src 'self' blob: data:",
-  //     "child-src 'self' blob: data:",
-  //     "object-src 'none'",
-  //     "base-uri 'self'",
-  //   ].join('; '),
-  // },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
+    description: 'Analyze and improve your Farcaster casts with AI-powered insights',
+    images: ['https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg'],
+  },
+  icons: {
+    icon: '/icon.svg',
+    apple: '/icon.svg',
+  },
 }
 
 export const viewport: Viewport = {

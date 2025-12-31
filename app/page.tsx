@@ -1,8 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { usePrivy } from '@privy-io/react-auth'
-import MinimalPrivyTest from '@/components/MinimalPrivyTest'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -19,12 +17,6 @@ export default function Home() {
   const [analysis, setAnalysis] = useState<CastAnalysis | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
-  const [showTip, setShowTip] = useState(false)
-
-  // Re-enable Privy hooks
-  const { login, logout, authenticated, user, ready } = usePrivy()
-
-  console.log('Auth state:', { authenticated, ready, user })
 
   const analyzeCast = async () => {
     if (!castText.trim()) {
@@ -58,47 +50,6 @@ export default function Home() {
     }
   }
 
-  const handleTip = async () => {
-    console.log('Tip button clicked', { authenticated, login, ready })
-    
-    if (!authenticated && login) {
-      try {
-        console.log('Attempting to login...')
-        setError('') // Clear any previous errors
-        
-        // Add a small delay to ensure Privy is fully ready
-        await new Promise(resolve => setTimeout(resolve, 100))
-        
-        const result = await login()
-        console.log('Login result:', result)
-        
-        // If login was successful, show tip confirmation
-        if (result) {
-          setShowTip(true)
-          setTimeout(() => setShowTip(false), 3000)
-        }
-      } catch (error) {
-        console.error('Login failed:', error)
-        // Show a more specific error message
-        if (error.message?.includes('User rejected')) {
-          setError('Login was cancelled. Please try again if you want to tip.')
-        } else if (error.message?.includes('network')) {
-          setError('Network error. Please check your connection and try again.')
-        } else {
-          setError('Login failed. Please try refreshing the page and try again.')
-        }
-        setTimeout(() => setError(''), 5000)
-      }
-      return
-    }
-    
-    if (authenticated) {
-      console.log('User already authenticated, showing tip confirmation')
-      setShowTip(true)
-      setTimeout(() => setShowTip(false), 3000)
-    }
-  }
-
   const getEngagementColor = (level: string) => {
     switch (level) {
       case 'High': return 'text-green-400'
@@ -108,16 +59,6 @@ export default function Home() {
     }
   }
 
-  const getUserDisplayName = () => {
-    if (user?.farcaster?.displayName) {
-      return user.farcaster.displayName
-    }
-    if (user?.email?.address) {
-      return user.email.address.split('@')[0]
-    }
-    return 'User'
-  }
-
   return (
     <main className="min-h-screen bg-black">
       <div className="container mx-auto px-4 py-8 max-w-mobile">
@@ -125,13 +66,8 @@ export default function Home() {
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-white mb-2">Cast Analyzer</h1>
           <p className="text-gray-400 text-sm">
-            Analyze and improve your Farcaster casts
+            Analyze and improve your Farcaster casts with AI-powered insights
           </p>
-        </div>
-
-        {/* Minimal Privy Test */}
-        <div className="mb-6">
-          <MinimalPrivyTest />
         </div>
 
         {/* Input Section */}
@@ -215,39 +151,29 @@ export default function Home() {
           </div>
         )}
 
-        {/* Tip Section */}
+        {/* About Section */}
         <div className="border-t border-gray-800 pt-6 mb-8">
           <div className="text-center space-y-3">
-            <button
-              onClick={handleTip}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-yellow-600 hover:bg-yellow-700 text-white rounded-md transition-colors text-sm font-medium"
-            >
-              ☕ {authenticated ? 'Tip Creator' : 'Login to Tip'}
-            </button>
-            
-            {authenticated && (
-              <div className="space-y-2">
-                <p className="text-xs text-gray-500">
-                  Connected as {getUserDisplayName()}
-                </p>
-                <button
-                  onClick={logout}
-                  className="text-xs text-gray-400 hover:text-gray-300 underline"
-                >
-                  Logout
-                </button>
+            <div className="p-4 bg-purple-900/20 border border-purple-800 rounded-lg">
+              <h3 className="text-purple-400 font-medium mb-2">🚀 Cast Analyzer</h3>
+              <p className="text-gray-400 text-sm mb-3">
+                AI-powered insights to help you create better Farcaster casts
+              </p>
+              <div className="grid grid-cols-3 gap-2 text-xs">
+                <div className="text-center">
+                  <div className="text-green-400 font-medium">Engagement</div>
+                  <div className="text-gray-500">Prediction</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-yellow-400 font-medium">Timing</div>
+                  <div className="text-gray-500">Optimization</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-blue-400 font-medium">Rewrites</div>
+                  <div className="text-gray-500">Suggestions</div>
+                </div>
               </div>
-            )}
-            
-            {showTip && (
-              <div className="p-3 bg-green-900/20 border border-green-800 rounded-md text-green-400 text-sm">
-                Thanks for the support! 🙏
-                <br />
-                <span className="text-xs text-green-500">
-                  Wallet integration coming soon
-                </span>
-              </div>
-            )}
+            </div>
           </div>
         </div>
 
