@@ -3,43 +3,8 @@
     "app/api/analyze/route.ts": {
       "maxDuration": 30
     },
-    "app/api/farcaster/route.ts": {
-      "maxDuration": 10
-    },
-    "app/.well-known/farcaster.json/route.ts": {
+    "app/manifest/route.ts": {
       "maxDuration": 10
     }
-  },
-  "headers": [
-    {
-      "source": "/.well-known/farcaster.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    },
-    {
-      "source": "/api/farcaster",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    }
-  ]
+  }
 }
