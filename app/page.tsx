@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -17,6 +17,14 @@ export default function Home() {
   const [analysis, setAnalysis] = useState<CastAnalysis | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [isMiniApp, setIsMiniApp] = useState(false)
+
+  useEffect(() => {
+    // Detect if running as Farcaster Mini App
+    const urlParams = new URLSearchParams(window.location.search)
+    const miniAppParam = urlParams.get('miniApp')
+    setIsMiniApp(miniAppParam === 'true')
+  }, [])
 
   const analyzeCast = async () => {
     if (!castText.trim()) {
@@ -68,6 +76,11 @@ export default function Home() {
           <p className="text-gray-400 text-sm">
             Analyze and improve your Farcaster casts with AI-powered insights
           </p>
+          {isMiniApp && (
+            <div className="mt-2 px-3 py-1 bg-purple-900/30 border border-purple-700 rounded-full inline-block">
+              <span className="text-purple-300 text-xs">🚀 Farcaster Mini App</span>
+            </div>
+          )}
         </div>
 
         {/* Input Section */}
