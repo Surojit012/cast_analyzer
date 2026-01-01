@@ -1,19 +1,6 @@
 {
   "name": "Cast Analyzer",
-  "description": "AI-powered insights to analyze and improve your Farcaster casts with engagement predictions, optimal timing, and rewrite suggestions",
+  "description": "Analyze your Farcaster casts with AI-powered insights",
   "icon": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg",
-  "url": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app",
-  "version": "1.0.0",
-  "author": {
-    "name": "Cast Analyzer Team",
-    "url": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app"
-  },
-  "categories": ["productivity", "social", "analytics"],
-  "features": [
-    "Engagement prediction (Low/Medium/High)",
-    "Optimal posting time suggestions",
-    "AI-powered rewrite suggestions (Concise, Engaging, Viral)",
-    "Real-time cast analysis",
-    "Mobile-first design"
-  ]
+  "url": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app"
 }

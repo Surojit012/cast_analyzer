@@ -51,6 +51,15 @@ const nextConfig = {
       },
     ]
   },
+  async rewrites() {
+    return [
+      {
+        // Ensure .well-known files are served as static files
+        source: '/.well-known/:path*',
+        destination: '/.well-known/:path*',
+      },
+    ]
+  },
 }
 
 module.exports = nextConfig
