@@ -3,7 +3,7 @@
     "app/api/analyze/route.ts": {
       "maxDuration": 30
     },
-    "app/manifest/route.ts": {
+    "app/farcaster.json/route.ts": {
       "maxDuration": 10
     }
   }

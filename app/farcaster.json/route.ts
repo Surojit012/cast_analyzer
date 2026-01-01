@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 
-// Simple Farcaster manifest route at /manifest
+// Farcaster manifest at /farcaster.json (root level)
 export async function GET() {
   const manifest = {
     name: "Cast Analyzer",
