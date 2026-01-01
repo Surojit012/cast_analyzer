@@ -5,6 +5,9 @@
     },
     "app/api/farcaster/route.ts": {
       "maxDuration": 10
+    },
+    "app/.well-known/farcaster.json/route.ts": {
+      "maxDuration": 10
     }
   },
   "headers": [
@@ -37,12 +40,6 @@
           "value": "*"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/.well-known/farcaster.json",
-      "destination": "/api/farcaster"
     }
   ]
 }
