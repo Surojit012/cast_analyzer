@@ -2,6 +2,9 @@
   "functions": {
     "app/api/analyze/route.ts": {
       "maxDuration": 30
+    },
+    "app/api/farcaster/route.ts": {
+      "maxDuration": 10
     }
   },
   "headers": [
@@ -11,8 +14,35 @@
         {
           "key": "Content-Type",
           "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
         }
       ]
+    },
+    {
+      "source": "/api/farcaster",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/.well-known/farcaster.json",
+      "destination": "/api/farcaster"
     }
   ]
 }
