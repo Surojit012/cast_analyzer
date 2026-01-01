@@ -11,6 +11,7 @@ const nextConfig = {
   async headers() {
     return [
       {
+        // Ensure Farcaster manifest is publicly accessible with proper headers
         source: '/.well-known/farcaster.json',
         headers: [
           {
@@ -20,6 +21,18 @@ const nextConfig = {
           {
             key: 'Cache-Control',
             value: 'public, max-age=3600, s-maxage=3600',
+          },
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type',
           },
         ],
       },
