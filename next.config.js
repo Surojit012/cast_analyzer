@@ -11,7 +11,7 @@ const nextConfig = {
   async headers() {
     return [
       {
-        // Ensure Farcaster manifest is publicly accessible with proper headers
+        // Ensure Farcaster manifest is served as static JSON
         source: '/.well-known/farcaster.json',
         headers: [
           {
@@ -20,19 +20,11 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=3600, s-maxage=3600',
+            value: 'public, max-age=3600',
           },
           {
             key: 'Access-Control-Allow-Origin',
             value: '*',
-          },
-          {
-            key: 'Access-Control-Allow-Methods',
-            value: 'GET, OPTIONS',
-          },
-          {
-            key: 'Access-Control-Allow-Headers',
-            value: 'Content-Type',
           },
         ],
       },
@@ -45,18 +37,9 @@ const nextConfig = {
           },
           {
             key: 'Cache-Control',
-            value: 'public, max-age=86400, s-maxage=86400',
+            value: 'public, max-age=86400',
           },
         ],
-      },
-    ]
-  },
-  async rewrites() {
-    return [
-      {
-        // Ensure .well-known files are served as static files
-        source: '/.well-known/:path*',
-        destination: '/.well-known/:path*',
       },
     ]
   },
