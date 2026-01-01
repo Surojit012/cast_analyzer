@@ -80,12 +80,12 @@ export default function Home() {
             value={castText}
             onChange={(e) => setCastText(e.target.value)}
             placeholder="Enter your Farcaster cast..."
-            className="w-full h-24 p-3 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-            maxLength={320}
+            className="w-full h-32 p-3 bg-gray-800 border border-gray-700 rounded-md text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+            maxLength={2000}
           />
           <div className="flex justify-between items-center mt-2">
             <span className="text-xs text-gray-500">
-              {castText.length}/320 characters
+              {castText.length}/2000 characters
             </span>
             <button
               onClick={analyzeCast}
