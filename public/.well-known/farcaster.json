@@ -1,6 +1,16 @@
 {
-  "name": "Cast Analyzer",
-  "description": "Analyze your Farcaster casts with AI insights.",
-  "icon": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg",
-  "url": "https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app"
+  "accountAssociation": {
+    "header": "eyJmaWQiOjQ1MTQ5NSwidHlwZSI6ImN1c3RvZHkiLCJrZXkiOiIweDZjOWEyRDg5NGI3NmM3RTU4NjE2Qjc1RTYyRjdmNjAxOGZjOEY5NjAifQ",
+    "payload": "eyJkb21haW4iOiJjYXN0LWFuYWx5emVyLnZlcmNlbC5hcHAifQ",
+    "signature": "OQrp9lv6rWt0t+Yzwr9xXQWtD3qb/ZffB0DWEdyVefhRHPX+G7GtksBHnYKC2WB65K4zoMcVP9+KmJksH8M9hRs="
+  },
+  "frame": {
+    "version": "next",
+    "name": "Cast Analyzer",
+    "iconUrl": "https://cast-analyzer.vercel.app/icon.svg",
+    "homeUrl": "https://cast-analyzer.vercel.app",
+    "splashImageUrl": "https://cast-analyzer.vercel.app/icon.svg",
+    "splashBackgroundColor": "#000000",
+    "buttonTitle": "Analyze Cast"
+  }
 }
