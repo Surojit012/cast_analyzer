@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { sdk } from '@farcaster/miniapp-sdk'
 
 interface CastAnalysis {
   engagement: 'Low' | 'Medium' | 'High'
@@ -24,6 +25,10 @@ export default function Home() {
     const urlParams = new URLSearchParams(window.location.search)
     const miniAppParam = urlParams.get('miniApp')
     setIsMiniApp(miniAppParam === 'true')
+  }, [])
+
+  useEffect(() => {
+    sdk.actions.ready()
   }, [])
 
   const analyzeCast = async () => {
