@@ -2,9 +2,6 @@
   "functions": {
     "app/api/analyze/route.ts": {
       "maxDuration": 30
-    },
-    "app/api/farcaster-manifest/route.ts": {
-      "maxDuration": 10
     }
   },
   "headers": [
