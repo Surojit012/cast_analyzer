@@ -8,6 +8,14 @@ const nextConfig = {
     // Ignore ESLint errors during build for deployment
     ignoreDuringBuilds: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: '/.well-known/farcaster.json',
+        destination: '/api/farcaster-manifest',
+      },
+    ]
+  },
   async headers() {
     return [
       {
