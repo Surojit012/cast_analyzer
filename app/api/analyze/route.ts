@@ -12,9 +12,9 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    if (castText.length > 320) {
+    if (castText.length > 2000) {
       return NextResponse.json(
-        { error: 'Cast text too long (max 320 characters)' },
+        { error: 'Cast text too long (max 2000 characters)' },
         { status: 400 }
       )
     }

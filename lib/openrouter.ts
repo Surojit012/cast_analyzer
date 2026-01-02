@@ -23,9 +23,9 @@ Analyze the following cast:
 1. Predict engagement (Low / Medium / High).
 2. Suggest the best posting time in UTC.
 3. Rewrite the cast in three styles:
-   - concise
-   - engaging
-   - viral
+   - concise: Make it shorter and more direct
+   - engaging: More interactive and community-focused
+   - viral: Optimized for maximum reach and shareability
 
 Use natural crypto-native language.
 Avoid emojis unless they feel natural.
@@ -64,7 +64,7 @@ Respond in this exact JSON format:
           }
         ],
         temperature: 0.7,
-        max_tokens: 400
+        max_tokens: 800 // Increased for longer responses
       })
     })
 
@@ -105,19 +105,36 @@ Respond in this exact JSON format:
     const wordCount = castText.split(' ').length
     const hasHashtags = castText.includes('#')
     const hasEmojis = castText.includes('🚀') || castText.includes('🔥') || castText.includes('💎') || castText.includes('🌟')
+    const hasQuestions = castText.includes('?')
+    const hasUrls = castText.includes('http') || castText.includes('.com') || castText.includes('.eth')
     
-    // Simple engagement prediction based on content
+    // More sophisticated engagement prediction
     let engagement: 'Low' | 'Medium' | 'High' = 'Medium'
-    if (wordCount < 5) engagement = 'Low'
-    else if (wordCount > 20 && (hasHashtags || hasEmojis)) engagement = 'High'
+    if (wordCount < 5) {
+      engagement = 'Low'
+    } else if (wordCount > 50 && (hasHashtags || hasEmojis || hasQuestions)) {
+      engagement = 'High'
+    } else if (hasHashtags || hasEmojis || hasQuestions || hasUrls) {
+      engagement = 'High'
+    }
+    
+    // Better fallback rewrites
+    const conciseVersion = castText.length > 100 ? 
+      castText.split('.')[0] + (castText.split('.').length > 1 ? '.' : '') : 
+      castText
+    
+    const engagingVersion = hasQuestions ? castText : 
+      castText + (hasEmojis ? '' : ' 🚀') + '\n\nWhat do you think?'
+    
+    const viralVersion = `${castText} ${hasHashtags ? '' : '#farcaster #crypto'}`
     
     return {
       engagement,
       bestTime: 'Best time: 9-11 AM UTC (peak Farcaster activity)',
       rewrites: {
-        concise: castText.length > 100 ? castText.slice(0, 97) + '...' : castText,
-        engaging: hasEmojis ? castText : castText + ' 🚀',
-        viral: `${castText} ${hasHashtags ? '' : '#farcaster'}`
+        concise: conciseVersion,
+        engaging: engagingVersion.slice(0, 300), // Keep it reasonable
+        viral: viralVersion.slice(0, 300)
       }
     }
   }
