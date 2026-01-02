@@ -14,10 +14,10 @@ export const metadata: Metadata = {
     title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
     description: 'Analyze and improve your Farcaster casts with AI-powered engagement predictions, optimal timing suggestions, and rewrite recommendations.',
     type: 'website',
-    url: 'https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app',
+    url: 'https://cast-analyzer.vercel.app',
     images: [
       {
-        url: 'https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg',
+        url: 'https://cast-analyzer.vercel.app/icon.svg',
         width: 512,
         height: 512,
         alt: 'Cast Analyzer Logo',
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
     description: 'Analyze and improve your Farcaster casts with AI-powered insights',
-    images: ['https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app/icon.svg'],
+    images: ['https://cast-analyzer.vercel.app/icon.svg'],
   },
   icons: {
     icon: '/icon.svg',

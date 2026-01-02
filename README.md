@@ -2,7 +2,7 @@
 
 AI-powered insights to analyze and improve your Farcaster casts with engagement predictions, optimal timing suggestions, and rewrite recommendations.
 
-**🚀 Live App**: [https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app](https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app)
+**🚀 Live App**: [https://cast-analyzer.vercel.app](https://cast-analyzer.vercel.app)
 
 ## 🚀 Features
 
@@ -32,7 +32,7 @@ AI-powered insights to analyze and improve your Farcaster casts with engagement 
 
 ## 🌐 Live App
 
-Visit: [https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app](https://cast-analyzer-flp1d2bza-surojit-guhas-projects.vercel.app)
+Visit: [https://cast-analyzer.vercel.app](https://cast-analyzer.vercel.app)
 
 ## 📱 Farcaster Integration
 
