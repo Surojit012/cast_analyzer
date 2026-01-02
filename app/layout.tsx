@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     url: 'https://cast-analyzer.vercel.app',
     images: [
       {
-        url: 'https://cast-analyzer.vercel.app/icon.svg',
-        width: 512,
-        height: 512,
-        alt: 'Cast Analyzer Logo',
+        url: 'https://cast-analyzer.vercel.app/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Cast Analyzer - AI-powered Farcaster cast insights',
       },
     ],
   },
@@ -28,11 +28,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Cast Analyzer - AI-Powered Farcaster Cast Insights',
     description: 'Analyze and improve your Farcaster casts with AI-powered insights',
-    images: ['https://cast-analyzer.vercel.app/icon.svg'],
+    images: ['https://cast-analyzer.vercel.app/og-image.png'],
   },
   icons: {
-    icon: '/icon.svg',
-    apple: '/icon.svg',
+    icon: '/icon.png',
+    apple: '/icon.png',
+    shortcut: '/icon.png',
   },
 }
 
